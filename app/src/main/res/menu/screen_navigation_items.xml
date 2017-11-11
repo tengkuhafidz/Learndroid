@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/screen_lessons"
+        android:icon="@drawable/ic_local_library_black_24dp"
+        android:title="@string/screen_lessons"/>
+
+    <item
+        android:id="@+id/screen_quizes"
+        android:icon="@drawable/ic_content_paste_black_24dp"
+        android:title="@string/screen_quizes"/>
+</menu>

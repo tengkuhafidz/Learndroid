@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Learndroid</string>
+
+    <!--Screen Types-->
+    <string name="screen_lessons">Lessons</string>
+    <string name="screen_quizes">Quizes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
