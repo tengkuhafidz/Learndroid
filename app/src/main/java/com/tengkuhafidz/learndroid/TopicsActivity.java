@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TopicsActivity extends AppCompatActivity {
+    MyDB db;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mTopicAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -23,7 +24,7 @@ public class TopicsActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
+        db = new MyDB(this);
         // get chapter title
         Intent intent = getIntent();
         mChapterTitle = intent.getStringExtra("chapterTitle");
@@ -40,24 +41,69 @@ public class TopicsActivity extends AppCompatActivity {
 
     private ArrayList<Topic> getAssociatedTopics(String chapterTitle) {
 
+        db.open();
         ArrayList<Topic> topics = new ArrayList<Topic>();
 
-        switch(chapterTitle) {
-            case "User Interface":
-                topics.add(new Topic("User Interface", 100));
-                topics.add(new Topic("User Input", 44));
-                topics.add(new Topic("Multi-screen Apps", 2));
-                topics.add(new Topic("Networking", 5));
-                topics.add(new Topic("Data Storage", 1));
-                break;
-            default:
-                topics.add(new Topic("erje5tjet", 60));
-                topics.add(new Topic("jrjrtte", 44));
-                topics.add(new Topic("jeqtte", 2));
-                topics.add(new Topic("geqhhqhq", 5));
-                topics.add(new Topic("Daeqheta eqhqeh", 1));
+//        switch(chapterTitle) {
+//            case R.string.chapter1_title:
+//                topics.add(new Topic("User Interface", true));
+//                topics.add(new Topic("User Input", true));
+//                topics.add(new Topic("Multi-screen Apps", true));
+//                topics.add(new Topic("Networking",true));
+//                topics.add(new Topic("Data Storage", true));
+//                break;
+//            case chapter2Title:
+//                topics.add(new Topic("User Interface", true));
+//                topics.add(new Topic("User Input", true));
+//                topics.add(new Topic("Multi-screen Apps", true));
+//                topics.add(new Topic("Networking",true));
+//                topics.add(new Topic("Data Storage", true));
+//                break;
+//            case chapter3Title:
+//                topics.add(new Topic("User Interface", true));
+//                topics.add(new Topic("User Input", true));
+//                topics.add(new Topic("Multi-screen Apps", true));
+//                topics.add(new Topic("Networking",true));
+//                topics.add(new Topic("Data Storage", true));
+//                break;
+//            default:
+//                topics.add(new Topic("erje5tjet", true));
+//                topics.add(new Topic("jrjrtte", true));
+//                topics.add(new Topic("jeqtte",true));
+//                topics.add(new Topic("geqhhqhq", true));
+//                topics.add(new Topic("Daeqheta eqhqeh", true));
+//        }
+
+        if (chapterTitle.equals(getString(R.string.chapter1_title))) {
+            topics.add(new Topic(getString(R.string.chapter1_topic1_title),
+                    db.getTopicProgress(getString(R.string.chapter1_topic1_title))));
+            topics.add(new Topic(getString(R.string.chapter1_topic2_title),
+                    db.getTopicProgress(getString(R.string.chapter1_topic2_title))));
+            topics.add(new Topic(getString(R.string.chapter1_topic3_title),
+                    db.getTopicProgress(getString(R.string.chapter1_topic3_title))));
+            topics.add(new Topic(getString(R.string.chapter1_topic4_title),
+                    db.getTopicProgress(getString(R.string.chapter1_topic4_title))));
+            topics.add(new Topic(getString(R.string.chapter1_topic5_title),
+                    db.getTopicProgress(getString(R.string.chapter1_topic5_title))));
+        }
+        else if (chapterTitle.equals(getString(R.string.chapter2_title))) {
+            topics.add(new Topic(getString(R.string.chapter2_topic1_title),
+                    db.getTopicProgress(getString(R.string.chapter2_topic1_title))));
+            topics.add(new Topic(getString(R.string.chapter2_topic2_title),
+                    db.getTopicProgress(getString(R.string.chapter2_topic2_title))));
+            topics.add(new Topic(getString(R.string.chapter2_topic3_title),
+                    db.getTopicProgress(getString(R.string.chapter2_topic3_title))));
+        }
+        else if (chapterTitle.equals(getString(R.string.chapter3_title))) {
+            topics.add(new Topic(getString(R.string.chapter3_topic1_title),
+                    db.getTopicProgress(getString(R.string.chapter3_topic1_title))));
+            topics.add(new Topic(getString(R.string.chapter3_topic2_title),
+                    db.getTopicProgress(getString(R.string.chapter3_topic2_title))));
+            topics.add(new Topic(getString(R.string.chapter3_topic3_title),
+                    db.getTopicProgress(getString(R.string.chapter3_topic3_title))));
         }
 
+        db.close();
         return topics;
     }
 }

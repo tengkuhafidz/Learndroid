@@ -7,6 +7,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Quiz -->
     <string name="level1_question1">Which of the following is considered a View in Android?</string>
     <string name="level1_question2">Which of the following is considered a View in Android?</string>
     <string name="level1_question3">Which of the following is considered a View in Android?</string>
@@ -212,5 +214,21 @@
     <string name="level5_question1_option2">name == \"John\"</string>
     <string name="level5_question1_option3">name === \"John\"</string>
     <string name="level5_question1_option4">name.equals(\"John\")</string>
+
+    <!-- Chapter, Topic, Section -->
+    <string name="chapter1_title">User Interface</string>
+    <string name="chapter2_title">User Input</string>
+    <string name="chapter3_title">Multi-Screen Apps</string>
+    <string name="chapter1_topic1_title">Building Layouts: Part 1</string>
+    <string name="chapter1_topic2_title">Quick Ckeck In</string>
+    <string name="chapter1_topic3_title">Building Layouts: Part 2</string>
+    <string name="chapter1_topic4_title">Practice Set: Building Layouts</string>
+    <string name="chapter1_topic5_title">Build A Single Screen App</string>
+    <string name="chapter2_topic1_title">Making An App Interactive: Part 1</string>
+    <string name="chapter2_topic2_title">Quick Guide To Using Android Studio And The Emulator</string>
+    <string name="chapter2_topic3_title">Making An App Interactive: Part 2</string>
+    <string name="chapter3_topic1_title">Intents And Activities</string>
+    <string name="chapter3_topic2_title">Java Break: Interfaces</string>
+    <string name="chapter3_topic3_title"><![CDATA[Arrays, Lists, Loops, & Custom Classes]]></string>
 
 </resources>
