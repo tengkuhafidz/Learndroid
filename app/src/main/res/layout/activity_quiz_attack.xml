@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/quiz_layout"
+    tools:context="com.tengkuhafidz.learndroid.QuizAttackActivity"
+    android:background="@color/colorPrimaryDark">
+
+    <LinearLayout
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+    <TextView
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:id="@+id/question_text"
+        android:text="Place question here. Which answer is the most accurate?"/>
+
+
+
+    <RadioGroup
+        android:id="@+id/options_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:layout_marginTop="16dp"
+            android:id="@+id/option1_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="option1"
+            android:checked="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
+
+        <RadioButton
+            android:id="@+id/option2_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="option2"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
+
+        <RadioButton
+            android:id="@+id/option3_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="option3"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
+
+        <RadioButton
+            android:id="@+id/option4_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="option4"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
+
+    </RadioGroup>
+
+    <Button
+        android:layout_marginTop="24sp"
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textColor="@android:color/white"
+        android:theme="@style/StartQuizButton"
+        android:onClick="checkAnswer"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/streak_record_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:text="Current Streak: 24  |  Highscore: 50"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"/>
+
+
+</LinearLayout>

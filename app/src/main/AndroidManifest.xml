@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.tengkuhafidz.learndroid">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,11 +22,16 @@
         </activity>
         <activity
             android:name=".TopicsActivity"
-            android:parentActivityName=".MainActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".SectionsActivity"
-                  android:parentActivityName=".TopicsActivity">
+        <activity
+            android:name=".SectionsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
+            android:parentActivityName=".TopicsActivity">
+        </activity>
+        <activity android:name=".QuizAttackActivity"
+                  android:parentActivityName=".MainActivity">
         </activity>
     </application>
 

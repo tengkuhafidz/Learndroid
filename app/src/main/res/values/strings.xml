@@ -7,4 +7,210 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="level1_question1">Which of the following is considered a View in Android?</string>
+    <string name="level1_question2">Which of the following is considered a View in Android?</string>
+    <string name="level1_question3">Which of the following is considered a View in Android?</string>
+    <string name="level1_question4">Which of the following is not considered a valid layout in Android?</string>
+    <string name="level1_question5">Which of the following is not considered a View in Android?</string>
+    <string name="level1_question6">Which of the following best summarizes the definition of a View?</string>
+    <string name="level1_question7">A layout is a container for?</string>
+    <string name="level1_question8">What is a container for Views?</string>
+    <string name="level1_question9">Which of the following lines of XML codes have errors?</string>
+    <string name="level1_question10">Which of the following XML line will change the background color of its component?</string>
+    <string name="level1_question1_option1">TextView</string>
+    <string name="level1_question1_option2">Database</string>
+    <string name="level1_question1_option3">String</string>
+    <string name="level1_question1_option4">Class</string>
+    <string name="level1_question2_option1">String</string>
+    <string name="level1_question2_option2">Button</string>
+    <string name="level1_question2_option3">ViewSource</string>
+    <string name="level1_question2_option4">MyView</string>
+    <string name="level1_question3_option1">Emulator</string>
+    <string name="level1_question3_option2">ArrayList</string>
+    <string name="level1_question3_option3">EditText</string>
+    <string name="level1_question3_option4">SDK</string>
+    <string name="level1_question4_option1">LinearLayout</string>
+    <string name="level1_question4_option2">RelativeLayout</string>
+    <string name="level1_question4_option3">GridLayout</string>
+    <string name="level1_question4_option4">HagridLayout</string>
+    <string name="level1_question5_option1">ListView</string>
+    <string name="level1_question5_option2">CardView</string>
+    <string name="level1_question5_option3">EditText</string>
+    <string name="level1_question5_option4">SearchView</string>
+    <string name="level1_question6_option1">Only refers to images the user can see</string>
+    <string name="level1_question6_option2">Any circular screen element</string>
+    <string name="level1_question6_option3">A rectangle on the screen that shows a user interface component</string>
+    <string name="level1_question6_option4">android:Text=\"a rectangle with rounded corners\"</string>
+    <string name="level1_question7_option1">codes</string>
+    <string name="level1_question7_option2">views</string>
+    <string name="level1_question7_option3">package</string>
+    <string name="level1_question7_option4">assets</string>
+    <string name="level1_question8_option2">Package</string>
+    <string name="level1_question8_option1">Layout</string>
+    <string name="level1_question8_option3">App</string>
+    <string name="level1_question8_option4">Styles</string>
+    <string name="level1_question9_option1">android:Text=\"Getting past errors\"</string>
+    <string name="level1_question9_option2">android:text=\"Getting past errors\"</string>
+    <string name="level1_question9_option3">android:background=\"@android:color/red\"</string>
+    <string name="level1_question9_option4">android:id=\"@+id/text_view\"</string>
+    <string name="level1_question10_option1">android:back_ground=\"@android:color/black\"</string>
+    <string name="level1_question10_option2">android:backGround=\"@android:color/black\"</string>
+    <string name="level1_question10_option3">android:background=\"@android:color/black\"</string>
+    <string name="level1_question10_option4">android:background_color=\"@android:color/black\"</string>
+    <string name="level2_question1">We write our Android codes in?</string>
+    <string name="level2_question2">Which of the following is a valid value for attribute layout_width?</string>
+    <string name="level2_question3">Which of the following is a valid value  for attribute layout_height?</string>
+    <string name="level2_question4">Which of the following is not a valid value for attribute layout_width?</string>
+    <string name="level2_question5">Which of the following is the recommended unit to use for textSize?</string>
+    <string name="level2_question6">Which of the following is the recommended unit to use for margin?</string>
+    <string name="level2_question7">Which of the following is valid ways to color a TextView?</string>
+    <string name="level2_question8">Which is the incorrect statement regarding ViewGroups?</string>
+    <string name="level2_question9">Which is the incorrect statement regarding ViewGroups?</string>
+    <string name="level2_question10">A view that contains other views is called</string>
+    <string name="level2_question1_option1">JSON editor</string>
+    <string name="level2_question1_option2">Word processor</string>
+    <string name="level2_question1_option3">IDE</string>
+    <string name="level2_question1_option4">XML</string>
+    <string name="level2_question2_option1">100pixels</string>
+    <string name="level2_question2_option2">wide</string>
+    <string name="level2_question2_option3">ten</string>
+    <string name="level2_question2_option4">match_parent</string>
+    <string name="level2_question3_option1">50pixels</string>
+    <string name="level2_question3_option2">50dp</string>
+    <string name="level2_question3_option3">fifty</string>
+    <string name="level2_question3_option4">50pp</string>
+    <string name="level2_question4_option1">50mm</string>
+    <string name="level2_question4_option2">50dp</string>
+    <string name="level2_question4_option3">wrap_content</string>
+    <string name="level2_question4_option4">fill_in</string>
+    <string name="level2_question5_option1">dp</string>
+    <string name="level2_question5_option2">px</string>
+    <string name="level2_question5_option3">\u0025</string>
+    <string name="level2_question5_option4">sp</string>
+    <string name="level2_question6_option4">dp</string>
+    <string name="level2_question6_option3">\u0025</string>
+    <string name="level2_question6_option2">px</string>
+    <string name="level2_question6_option1">sp</string>
+    <string name="level2_question7_option1">android:background=\"#2196F3\"</string>
+    <string name="level2_question7_option2">android:backgroundColor=\"#2196F3\"</string>
+    <string name="level2_question7_option3">android:Background=\"#2196F3\"</string>
+    <string name="level2_question7_option4">\"android:background=\"RGB(255,0,255)\"</string>
+    <string name="level2_question8_option1">There can be multiple root Views</string>
+    <string name="level2_question8_option2">The root ViewGroup should enclose all other views</string>
+    <string name="level2_question8_option3">A ViewGroup that contains other views is called the Parent</string>
+    <string name="level2_question8_option4">There can only be one root view</string>
+    <string name="level2_question9_option1">The root ViewGroup should enclose all other views</string>
+    <string name="level2_question9_option2">A root view only contains width and height attributes</string>
+    <string name="level2_question9_option3">A ViewGroup that contains other views is called the Parent</string>
+    <string name="level2_question9_option4">There can only be one root view</string>
+    <string name="level2_question10_option1">Friend</string>
+    <string name="level2_question10_option2">Parent</string>
+    <string name="level2_question10_option3">Child</string>
+    <string name="level2_question10_option4">Sibling</string>
+    <string name="level3_question1">What is used for laying out views horizontally or vertically</string>
+    <string name="level3_question2">What is used to position views next to or above/below another view?</string>
+    <string name="level3_question3">What is the default value of the orientation attribute for a LinearLayout?</string>
+    <string name="level3_question4">What should the value of layout_weight for 2 columns, if you want the 1st one to be 25\u0025 of the width and the 2nd to be 75\u0025?</string>
+    <string name="level3_question5">Does a LinearLayout scroll by default?</string>
+    <string name="level3_question6">Which of the following XML attributes is not used to control the position of a View inside a RelativeLayout?</string>
+    <string name="level3_question7">Which of the following XML attributes is not used to control the position of a View inside a RelativeLayout?</string>
+    <string name="level3_question8">Which of the following is an incorrect statement regarding id name creation?</string>
+    <string name="level3_question9">Which of the following is an incorrect statement regarding id name creation?</string>
+    <string name="level3_question10">Which of the following is a correct statement regarding id name creation?</string>
+    <string name="level3_question1_option1">TableLayout</string>
+    <string name="level3_question1_option2">LinearLayout</string>
+    <string name="level3_question1_option3">RelativeLayout</string>
+    <string name="level3_question1_option4">FrameLayout</string>
+    <string name="level3_question2_option1">TableLayout</string>
+    <string name="level3_question2_option2">LinearLayout</string>
+    <string name="level3_question2_option3">RelativeLayout</string>
+    <string name="level3_question2_option4">FrameLayout</string>
+    <string name="level3_question3_option1">Vertical</string>
+    <string name="level3_question3_option2">Horizontal</string>
+    <string name="level3_question3_option3">Diagonal</string>
+    <string name="level3_question3_option5">Its parent\'s orientation</string>
+    <string name="level3_question4_option1">col 1: 1, col 2: 4</string>
+    <string name="level3_question4_option2">col 1: 25\u0025, col2: 75\u0025</string>
+    <string name="level3_question4_option3">col 1: 1, col2: 2</string>
+    <string name="level3_question4_option4">col 1: 1, col2: 3</string>
+    <string name="level3_question5_option1">No</string>
+    <string name="level3_question5_option2">Yes</string>
+    <string name="level3_question5_option3">Sometimes</string>
+    <string name="level3_question5_option4">Always</string>
+    <string name="level3_question6_option1">alignParentTop</string>
+    <string name="level3_question6_option2">alignParentLeft</string>
+    <string name="level3_question6_option3">layout_centerHorizontal</string>
+    <string name="level3_question6_option4">alignParentBeginning</string>
+    <string name="level3_question7_option1">alignParentTop</string>
+    <string name="level3_question7_option2">alignParentLeft</string>
+    <string name="level3_question7_option3">layout_centerHorizontal</string>
+    <string name="level3_question7_option4">layout_centerLeft</string>
+    <string name="level3_question8_option1">The name cannot contain spaces</string>
+    <string name="level3_question8_option2">It needs to start with a letter</string>
+    <string name="level3_question8_option3">The name should be unique compared to other ids</string>
+    <string name="level3_question8_option4">All views must have an id</string>
+    <string name="level3_question9_option1">The name can contain spaces</string>
+    <string name="level3_question9_option2">It needs to start with a letter</string>
+    <string name="level3_question9_option3">The name should be unique compared to other ids</string>
+    <string name="level3_question9_option4">Numbers can be used in a name</string>
+    <string name="level3_question10_option1">The name can contain spaces</string>
+    <string name="level3_question10_option2">The name is not case sensitive</string>
+    <string name="level3_question10_option3">The name should be unique compared to other ids</string>
+    <string name="level3_question10_option4">All views must have an id</string>
+    <string name="level4_question1">Which of the following is a valid value to the attribute alignParentTop?</string>
+    <string name="level4_question2">When deciding on the height of a view, which of the following is not valid values?</string>
+    <string name="level4_question3">When deciding on the height of a view, which of the following is not valid values?</string>
+    <string name="level4_question4">When deciding on the height of a view, which of the following is valid values?</string>
+    <string name="level4_question5">The term for an image that goes edge to edge is called?</string>
+    <string name="level4_question6">What is the recommended increment to use when setting padding?</string>
+    <string name="level4_question7">What is the recommended increment to use when setting margin?</string>
+    <string name="level4_question8">Which of the following is a valid way to assign a variable to a value?</string>
+    <string name="level4_question9">Which of the following is a valid way to assign a variable to a value?</string>
+    <string name="level4_question10">Which of the following is a valid way to check if int quantity was assigned to value 2?</string>
+    <string name="level4_question1_option1">true</string>
+    <string name="level4_question1_option2">yes</string>
+    <string name="level4_question1_option3">0</string>
+    <string name="level4_question1_option4">top</string>
+    <string name="level4_question2_option1">equal_parent</string>
+    <string name="level4_question2_option2">wrap_content</string>
+    <string name="level4_question2_option3">match_parent</string>
+    <string name="level4_question2_option4">75dp</string>
+    <string name="level4_question3_option1">fill_in</string>
+    <string name="level4_question3_option2">wrap_content</string>
+    <string name="level4_question3_option3">match_parent</string>
+    <string name="level4_question3_option4">75dp</string>
+    <string name="level4_question4_option1">fill_in</string>
+    <string name="level4_question4_option2">wrap_content</string>
+    <string name="level4_question4_option3">equal_parent</string>
+    <string name="level4_question4_option4">75sp</string>
+    <string name="level4_question5_option1">full size</string>
+    <string name="level4_question5_option2">match_parent</string>
+    <string name="level4_question5_option3">full bleed</string>
+    <string name="level4_question5_option4">complete</string>
+    <string name="level4_question6_option1">4dp</string>
+    <string name="level4_question6_option2">8dp</string>
+    <string name="level4_question6_option3">12dp</string>
+    <string name="level4_question6_option4">16dp</string>
+    <string name="level4_question7_option1">4dp</string>
+    <string name="level4_question7_option2">8dp</string>
+    <string name="level4_question7_option3">12dp</string>
+    <string name="level4_question7_option4">16dp</string>
+    <string name="level4_question8_option1">int qty = \"200\"</string>
+    <string name="level4_question8_option2">Int qty = \"200\"</string>
+    <string name="level4_question8_option3">int qty = 200</string>
+    <string name="level4_question8_option4">String qty = 200</string>
+    <string name="level4_question9_option1">string name = \"John\"</string>
+    <string name="level4_question9_option2">String = \"John\"</string>
+    <string name="level4_question9_option3">String name = John</string>
+    <string name="level4_question9_option4">String name = \"John\"</string>
+    <string name="level4_question10_option1">quantity = 2</string>
+    <string name="level4_question10_option2">quantity == 2</string>
+    <string name="level4_question10_option3">quantity === 2</string>
+    <string name="level4_question10_option4">quantity.equals(2)</string>
+    <string name="level5_question1">Which of the following is a valid way to check if String name was assigned to value \"John\"?</string>
+    <string name="level5_question1_option1">name = \"John\"</string>
+    <string name="level5_question1_option2">name == \"John\"</string>
+    <string name="level5_question1_option3">name === \"John\"</string>
+    <string name="level5_question1_option4">name.equals(\"John\")</string>
+
 </resources>

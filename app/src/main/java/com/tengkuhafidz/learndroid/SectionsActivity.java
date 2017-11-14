@@ -37,10 +37,10 @@ public class SectionsActivity extends AppCompatActivity {
 
     private ArrayList<Section> getAssociatedSections(String topicTitle) {
         ArrayList<Section> sections = new ArrayList<Section>();
-        sections.add(new Section("one", "wahid.com", "42yio24ht oi24htip24 j24 t" ));
-        sections.add(new Section("two", "ithnani.com", " l;hiowrgohrw oghrw;g  hrhqh"));
-        sections.add(new Section("three", "thalatha.com", " lweughw o;ihgw rgnrw"));
-        sections.add(new Section("four", "arba'a.com", " weoughw orgh ;orwhjgjgrw h"));
+        sections.add(new Section("one", "63KYESWr4ts", "42yio24ht oi24htip24 j24 t" ));
+        sections.add(new Section("two", "HJg7_dxkICQ", " l;hiowrgohrw oghrw;g  hrhqh"));
+        sections.add(new Section("three", "lDXFmtb92i4", " lweughw o;ihgw rgnrw"));
+        sections.add(new Section("four", "dNbHlbCX7tc", " weoughw orgh ;orwhjgjgrw h"));
         return sections;
     }
 }
