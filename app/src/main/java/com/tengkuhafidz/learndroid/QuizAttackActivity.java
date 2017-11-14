@@ -8,12 +8,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -26,56 +24,188 @@ public class QuizAttackActivity extends AppCompatActivity {
     private RadioButton option2Radio;
     private RadioButton option3Radio;
     private RadioButton option4Radio;
-    private Button submitButton;
     public TextView streakRecordText;
-    private ArrayList<Quiz> quizSets;
     private Quiz quizSet;
-    public static final String SHAREDPREF_STREAK = "SharedPrefCurrentStreak";
+    private ArrayList<Quiz> quizSets;
+    private int score = 0;
+    private int highscore;
+    int level = 1;
+    private boolean highscoreBroken = false;
+    public static final String SHAREDPREF_SCORE = "SharedPrefScore";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_attack);
+        // reference to layout and views
         quizLayout = (LinearLayout) findViewById(R.id.quiz_layout);
-        getSupportActionBar().setTitle("Quiz Attack");
-        quizSets = getNewQuizSets(0);
-        setQuestion();
-        setCurrentStreak(0);
-    }
-
-    private void setQuestion() {
-        quizSet = getQuizSet();
-
         questionTextView = (TextView) findViewById(R.id.question_text);
         option1Radio = (RadioButton) findViewById(R.id.option1_radio);
         option2Radio = (RadioButton) findViewById(R.id.option2_radio);
         option3Radio = (RadioButton) findViewById(R.id.option3_radio);
         option4Radio = (RadioButton) findViewById(R.id.option4_radio);
+        // set action bar title
+        getSupportActionBar().setTitle("Quiz Attack");
+        //prepare quiz set - starting with level 1 (index of 0)
+        quizSets = getNewQuizSets(level);
+        setQuestion();
+        highscore = getHighscore();
+    }
 
+    // prepare quiz set
+    private void setQuestion() {
+        quizSet = getQuizSet();
         questionTextView.setText(quizSet.getQuestion());
         option1Radio.setText(quizSet.getOption1());
         option2Radio.setText(quizSet.getOption2());
         option3Radio.setText(quizSet.getOption3());
         option4Radio.setText(quizSet.getOption4());
-
     }
 
-
+    // return a random set of quiz
     private Quiz getQuizSet() {
         int min = 0;
         int max = 9;
         int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
-
         Quiz quizSet = quizSets.get(randomNum);
-
         return quizSet;
+    }
+
+
+    // handle user's answer
+    public void checkAnswer(View view) {
+
+        String correctAnswer = quizSet.getAnswer();
+
+        optionsRadioGroup = (RadioGroup) findViewById(R.id.options_radio_group);
+        int optionChosenId = optionsRadioGroup.getCheckedRadioButtonId();
+        RadioButton chosenRadioButton = (RadioButton) findViewById(optionChosenId);
+        if(chosenRadioButton != null) {
+            String chosenAnswer = chosenRadioButton.getText().toString();
+            if (chosenAnswer.equals(correctAnswer)) {
+                correctAnswerAction();
+            } else {
+                wrongAnswerAction();
+            }
+        }
+
+    }
+
+    // update current streak score,
+    // handle highscore check,
+    // check for level up, and
+    // check for infinity more
+    public void correctAnswerAction() {
+        score++;
+        // update highscore if needed
+        if (!highscoreBroken && score > highscore) {
+            setHighscore(score);
+            popDialog("Wooop! Beaten your own highscore. All the way now!", null, "Okay");
+
+            highscoreBroken = true;
+        }
+        // set to infinity mode when when needed
+        if (level != -1) {
+            if (score < 20 && score % 5 == 0) {
+                level++;
+            } else if (score == 20) {
+                level = -1;
+                popDialog("WOAH! You made it to infinity mode. Gain as many scores as you can!", null, "Okay");
+            }
+            getNewQuizSets(level);
+        }
+        // prepare quiz set
+        setQuestion();
+
+        //update record text
+        updateRecordText();
+    }
+
+
+
+    //helper method to handle dialog
+    public void popDialog(String message, String positiveMessage, String negativeMessage) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(message);
+
+        if (positiveMessage != null) {
+            alertDialogBuilder.setPositiveButton(positiveMessage, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+        }
+
+        if (negativeMessage != null) {
+            alertDialogBuilder.setNegativeButton(negativeMessage, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+        }
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+
+    public int getHighscore() {
+        SharedPreferences scorePrefs = getSharedPreferences(SHAREDPREF_SCORE, MODE_PRIVATE);
+        return scorePrefs.getInt("highscore", 0);
+    }
+
+    public void setHighscore(int score) {
+        SharedPreferences.Editor editor =
+                getSharedPreferences(SHAREDPREF_SCORE, MODE_PRIVATE).edit();
+        editor.putInt("highscore", score);
+        editor.commit();
+    }
+
+
+
+    public void updateRecordText() {
+        streakRecordText = (TextView) findViewById(R.id.streak_record_text);
+        if(level != -1) {
+            streakRecordText.setText("Level: " + level + "  |  Score: " + score);
+        } else {
+            streakRecordText.setText("INFINITY MODE  |  Score: " + score);
+        }
+    }
+
+    public void wrongAnswerAction() {
+        score = 0;
+        quizSets = getNewQuizSets(0);
+
+        popDialog("Oooops, you got that wrong. Restart!", "Okay", null);
+
+    }
+
+    private void promptQuitConfirmation() {
+        popDialog("Quit game now? Your cannot resume your play later.", "Confirm", "Cancel");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                promptQuitConfirmation();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        // do something here and don't write super.onBackPressed()
+        promptQuitConfirmation();
+
     }
 
     private ArrayList<Quiz> getNewQuizSets(int level) {
         ArrayList<Quiz> quizSets = new ArrayList<Quiz>();
-
         switch(level){
-            case 0:
+            case 1:
                 quizLayout.setBackgroundColor(Color.parseColor("#0288d1"));
                 quizSets.add(new Quiz(getString(R.string.level1_question1), getString(R.string.level1_question1_option1), getString(R.string.level1_question1_option2), getString(R.string.level1_question1_option3), getString(R.string.level1_question1_option4), getString(R.string.level1_question1_option1)));
                 quizSets.add(new Quiz(getString(R.string.level1_question2), getString(R.string.level1_question2_option1), getString(R.string.level1_question2_option2), getString(R.string.level1_question2_option3), getString(R.string.level1_question2_option4), getString(R.string.level1_question2_option2)));
@@ -88,7 +218,7 @@ public class QuizAttackActivity extends AppCompatActivity {
                 quizSets.add(new Quiz(getString(R.string.level1_question9), getString(R.string.level1_question9_option1), getString(R.string.level1_question9_option2), getString(R.string.level1_question9_option3), getString(R.string.level1_question9_option4), getString(R.string.level1_question9_option1)));
                 quizSets.add(new Quiz(getString(R.string.level1_question10), getString(R.string.level1_question10_option1), getString(R.string.level1_question10_option2), getString(R.string.level1_question10_option3), getString(R.string.level1_question10_option4), getString(R.string.level1_question10_option3)));
                 break;
-            case 1:
+            case 2:
                 quizLayout.setBackgroundColor(Color.parseColor("#1976d2"));
                 quizSets.add(new Quiz(getString(R.string.level2_question1), getString(R.string.level2_question1_option1), getString(R.string.level2_question1_option2), getString(R.string.level2_question1_option3), getString(R.string.level2_question1_option4), getString(R.string.level2_question1_option3)));
                 quizSets.add(new Quiz(getString(R.string.level2_question2), getString(R.string.level2_question2_option1), getString(R.string.level2_question2_option2), getString(R.string.level2_question2_option3), getString(R.string.level2_question2_option4), getString(R.string.level2_question2_option4)));
@@ -101,7 +231,7 @@ public class QuizAttackActivity extends AppCompatActivity {
                 quizSets.add(new Quiz(getString(R.string.level2_question9), getString(R.string.level2_question9_option1), getString(R.string.level2_question9_option2), getString(R.string.level2_question9_option3), getString(R.string.level2_question9_option4), getString(R.string.level2_question9_option2)));
                 quizSets.add(new Quiz(getString(R.string.level2_question10), getString(R.string.level2_question10_option1), getString(R.string.level2_question10_option2), getString(R.string.level2_question10_option3), getString(R.string.level2_question10_option4),  getString(R.string.level2_question10_option2)));
                 break;
-            case 2:
+            case 3:
                 quizLayout.setBackgroundColor(Color.parseColor("#303f9f"));
                 quizSets.add(new Quiz(getString(R.string.level3_question1), getString(R.string.level3_question1_option1), getString(R.string.level3_question1_option2), getString(R.string.level3_question1_option3), getString(R.string.level3_question1_option4), getString(R.string.level3_question1_option2)));
                 quizSets.add(new Quiz(getString(R.string.level3_question2), getString(R.string.level3_question2_option1), getString(R.string.level3_question2_option2), getString(R.string.level3_question2_option3), getString(R.string.level3_question2_option4), getString(R.string.level3_question2_option3)));
@@ -114,7 +244,7 @@ public class QuizAttackActivity extends AppCompatActivity {
                 quizSets.add(new Quiz(getString(R.string.level3_question9), getString(R.string.level3_question9_option1), getString(R.string.level3_question9_option2), getString(R.string.level3_question9_option3), getString(R.string.level3_question9_option4), getString(R.string.level3_question9_option1)));
                 quizSets.add(new Quiz(getString(R.string.level3_question10), getString(R.string.level3_question10_option1), getString(R.string.level3_question10_option2), getString(R.string.level3_question10_option3), getString(R.string.level3_question10_option4), getString(R.string.level3_question10_option3)));
                 break;
-            case 3:
+            case 4:
                 quizLayout.setBackgroundColor(Color.parseColor("#00796b"));
                 quizSets.add(new Quiz(getString(R.string.level4_question1), getString(R.string.level4_question1_option1), getString(R.string.level4_question1_option2), getString(R.string.level4_question1_option3), getString(R.string.level4_question1_option4), getString(R.string.level4_question1_option1)));
                 quizSets.add(new Quiz(getString(R.string.level4_question2), getString(R.string.level4_question2_option1), getString(R.string.level4_question2_option2), getString(R.string.level4_question2_option3), getString(R.string.level4_question2_option4), getString(R.string.level4_question2_option1)));
@@ -171,143 +301,7 @@ public class QuizAttackActivity extends AppCompatActivity {
                 quizSets.add(new Quiz(getString(R.string.level4_question10), getString(R.string.level4_question10_option1), getString(R.string.level4_question10_option2), getString(R.string.level4_question10_option3), getString(R.string.level4_question10_option4), getString(R.string.level4_question10_option2)));
                 quizSets.add(new Quiz(getString(R.string.level5_question1), getString(R.string.level5_question1_option1), getString(R.string.level5_question1_option2), getString(R.string.level5_question1_option3), getString(R.string.level5_question1_option4), getString(R.string.level5_question1_option4)));
         }
-
         return quizSets;
-    }
-
-    public void checkAnswer(View view) {
-
-        String correctAnswer = quizSet.getAnswer();
-
-        optionsRadioGroup = (RadioGroup) findViewById(R.id.options_radio_group);
-        int optionChosenId = optionsRadioGroup.getCheckedRadioButtonId();
-        RadioButton chosenRadioButton = (RadioButton) findViewById(optionChosenId);
-        if(chosenRadioButton != null) {
-            String chosenAnswer = chosenRadioButton.getText().toString();
-
-            if (chosenAnswer.equals(correctAnswer)) {
-                correctAnswerAction();
-            } else {
-                wrongAnswerAction();
-            }
-        }
-
-    }
-
-    public void correctAnswerAction() {
-        int currStreak = getCurrentStreak();
-
-
-        int updatedStreak = currStreak + 1;
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Nice! Next level.");
-
-
-        alertDialogBuilder.setNegativeButton("leggo.",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-
-        if(updatedStreak%5 == 0) {
-            int level = updatedStreak / 5;
-            quizSets = getNewQuizSets(level);
-
-
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
-        }
-
-
-        setCurrentStreak(updatedStreak);
-
-
-        Toast.makeText(this, " " + updatedStreak, Toast.LENGTH_SHORT).show();
-
-
-        setQuestion();
-
-    }
-
-    public int getCurrentStreak() {
-
-
-        SharedPreferences streakPrefs = getSharedPreferences(SHAREDPREF_STREAK, MODE_PRIVATE);
-        int currStreak = streakPrefs.getInt("currentStreak", 0);
-        return currStreak;
-    }
-
-    public void setCurrentStreak(int currentStreak) {
-        SharedPreferences.Editor editor =
-                getSharedPreferences(SHAREDPREF_STREAK, MODE_PRIVATE).edit();
-        editor.putInt("currentStreak", currentStreak);
-        editor.commit();
-        updateRecordText(currentStreak);
-    }
-
-
-
-    public void updateRecordText(int currentStreak) {
-        streakRecordText = (TextView) findViewById(R.id.streak_record_text);
-        streakRecordText.setText("Current Streak: " + currentStreak);
-    }
-
-    public void wrongAnswerAction() {
-        setCurrentStreak(0);
-        quizSets = getNewQuizSets(0);
-        Toast.makeText(this, "wrong", Toast.LENGTH_SHORT).show();
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Wrong! restart~");
-
-
-        alertDialogBuilder.setNegativeButton("Sed. Okai.",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
-
-    private void promptQuitConfirmation() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Suare wanna quit? Progress won't be saved~");
-
-
-        alertDialogBuilder.setPositiveButton("ye. Okai.",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-
-        alertDialogBuilder.setNegativeButton("kensel",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                promptQuitConfirmation();
-                break;
-        }
-        return true;
-    }
-
-    @Override
-    public void onBackPressed(){
-        // do something here and don't write super.onBackPressed()
-        promptQuitConfirmation();
-
     }
 
 }

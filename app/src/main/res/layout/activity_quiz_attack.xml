@@ -27,7 +27,6 @@
         android:text="Place question here. Which answer is the most accurate?"/>
 
 
-
     <RadioGroup
         android:id="@+id/options_radio_group"
         android:layout_width="wrap_content"
@@ -87,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="24dp"
-        android:text="Current Streak: 24  |  Highscore: 50"
+        android:text="Level: 1  |  Score: 0"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
         android:textAlignment="center"/>

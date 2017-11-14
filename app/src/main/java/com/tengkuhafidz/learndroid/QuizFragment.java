@@ -2,12 +2,16 @@ package com.tengkuhafidz.learndroid;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,6 +19,8 @@ import android.widget.Button;
 public class QuizFragment extends Fragment {
 
     Button startQuizButton;
+    public static final String SHAREDPREF_SCORE = "SharedPrefScore";
+
 
     public static QuizFragment newInstance() {
         QuizFragment fragment = new QuizFragment();
@@ -40,7 +46,17 @@ public class QuizFragment extends Fragment {
                 startActivity(intent);
             }
        });
+
+
+        TextView highscoreTextView = (TextView) rootView.findViewById(R.id.highscore_text);
+        highscoreTextView.setText("Your Highscore: " + getHighscore());
+
      return rootView;
+    }
+
+    public int getHighscore() {
+        SharedPreferences scorePrefs = getContext().getSharedPreferences(SHAREDPREF_SCORE, MODE_PRIVATE);
+        return scorePrefs.getInt("highscore", 0);
     }
 
 }
