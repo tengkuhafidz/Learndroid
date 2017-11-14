@@ -7,18 +7,18 @@ package com.tengkuhafidz.learndroid;
 public class Topic {
 
     private String mTitle;
-    private int mPercentageCompleted;
+    private boolean mIsCompleted;
 
-    Topic(String title, int percentageCompleted) {
+    Topic(String title, boolean isCompleted) {
         mTitle = title;
-        mPercentageCompleted = percentageCompleted;
+        mIsCompleted = isCompleted;
     }
 
     public String getTitle() {
         return mTitle;
     }
 
-    public int getPercentageCompleted() {
-        return mPercentageCompleted;
+    public boolean getIsCompleted() {
+        return mIsCompleted;
     }
 }

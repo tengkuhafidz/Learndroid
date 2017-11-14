@@ -28,7 +28,7 @@
             android:textSize="14sp"
             android:text="Welcome to the Course"/>
         <TextView
-            android:id="@+id/topic_percentage_completed_text"
+            android:id="@+id/topic_is_completed_text"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.StringDef;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
@@ -31,17 +32,19 @@ public class MyDB {
 
     public void populateDatabase() {
         //Chapter 1
-        insertDataIntoProgressTable("User Interface", "Building Layouts: Part 1", "0");
-        insertDataIntoProgressTable("User Interface", "Quick Ckeck In", "0");
-        insertDataIntoProgressTable("User Interface", "Building Layouts: Part 2", "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter1_title), context.getString(R.string.chapter1_topic1_title), "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter1_title), context.getString(R.string.chapter1_topic2_title), "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter1_title), context.getString(R.string.chapter1_topic3_title), "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter1_title), context.getString(R.string.chapter1_topic4_title), "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter1_title), context.getString(R.string.chapter1_topic5_title), "0");
         //Chapter 2
-        insertDataIntoProgressTable("User Input", "Making An App Interactive: Part 1", "0");
-        insertDataIntoProgressTable("User Input", "Quick Guide To Using Android Studio And The Emulator", "0");
-        insertDataIntoProgressTable("User Input", "Making An App Interactive: Part 2", "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter2_title), context.getString(R.string.chapter2_topic1_title), "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter2_title), context.getString(R.string.chapter2_topic2_title), "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter2_title), context.getString(R.string.chapter2_topic3_title), "0");
         //Chapter 3
-        insertDataIntoProgressTable("Multi-Screen Apps", "Intents And Activities", "0");
-        insertDataIntoProgressTable("Multi-Screen Apps", "Java Break: Interfaces", "0");
-        insertDataIntoProgressTable("Multi-Screen Apps", "Arrays, Lists, Loops, & Custom Classes", "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter3_title), context.getString(R.string.chapter3_topic1_title), "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter3_title), context.getString(R.string.chapter3_topic2_title), "0");
+        insertDataIntoProgressTable(context.getString(R.string.chapter3_title), context.getString(R.string.chapter3_topic3_title), "0");
 
         //Inserting highscore of 0
         insertDataIntoHighscoreTable("0");
@@ -112,6 +115,7 @@ public class MyDB {
                         MyDBHelper.progress_chapterName,
                         MyDBHelper.progress_topicName,
                         MyDBHelper.progress_isCompleted},
+                MyDBHelper.progress_chapterName + "='" + chapterName + "'",
                 null, null, null, null, null);
 
         if (progressCursor != null) {

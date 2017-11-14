@@ -25,14 +25,14 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
     public static class TopicViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView topicTitleText;
-        TextView topicPercentageCompletedText;
+        TextView topicIsCompletedText;
         String topicTitle;
 
         TopicViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.topic_card);
             topicTitleText = (TextView)itemView.findViewById(R.id.topic_title_text);
-            topicPercentageCompletedText = (TextView)itemView.findViewById(R.id.topic_percentage_completed_text);
+            topicIsCompletedText = (TextView)itemView.findViewById(R.id.topic_is_completed_text);
 
             cv.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
@@ -58,8 +58,13 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
 
     @Override
     public void onBindViewHolder(TopicViewHolder topicViewHolder, int i) {
+
+        String isCompletedStr = "\u2022";
+        if (mTopics.get(i).getIsCompleted()) {
+            isCompletedStr = "\u2713";
+        }
         topicViewHolder.topicTitleText.setText(mTopics.get(i).getTitle());
-        topicViewHolder.topicPercentageCompletedText.setText(mTopics.get(i).getPercentageCompleted() + "%");
+        topicViewHolder.topicIsCompletedText.setText(isCompletedStr);
         topicViewHolder.topicTitle = mTopics.get(i).getTitle();
     }
 
