@@ -6,12 +6,12 @@ package com.tengkuhafidz.learndroid;
 
 public class Section {
     private String mTitle;
-    private String mVideoUrl;
+    private String mVideoId;
     private String mLessonText;
 
-    Section(String title, String videoUrl, String lessonText) {
+    Section(String title, String videoId, String lessonText) {
         mTitle = title;
-        mVideoUrl = videoUrl;
+        mVideoId = videoId;
         mLessonText = lessonText;
     }
 
@@ -19,8 +19,8 @@ public class Section {
         return mTitle;
     }
 
-    public String getVideoUrl() {
-        return mVideoUrl;
+    public String getVideoId() {
+        return mVideoId;
     }
 
     public String getLessonText() { return mLessonText; }

@@ -2,11 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@color/colorPrimaryDark"
+              >
 
     <TextView
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/screen_quizes"/>
+        android:text="Quiz Attack"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_margin="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Challenge yourself to get the most number of correct consecutive answer"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_margin="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Highscore: 24"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:layout_margin="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/StartQuizButton"
+        android:text="Start"
+        android:id="@+id/start_quiz_button"/>
 
 </LinearLayout>
