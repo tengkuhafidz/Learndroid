@@ -1,12 +1,15 @@
 package com.tengkuhafidz.learndroid;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,9 +20,12 @@ import java.util.ArrayList;
 public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHolder> {
 
     ArrayList<Topic> mTopics;
+    Context mContext;
 
-    TopicAdapter(ArrayList<Topic> topics){
+    TopicAdapter(ArrayList<Topic> topics, Context context){
         mTopics = topics;
+        mContext = context;
+
     }
 
     public static class TopicViewHolder extends RecyclerView.ViewHolder {
@@ -27,22 +33,36 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         TextView topicTitleText;
         TextView topicIsCompletedText;
         String topicTitle;
+        View view;
 
-        TopicViewHolder(View itemView) {
+        private boolean isNetworkConnected() {
+            ConnectivityManager cm = (ConnectivityManager) view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            return cm.getActiveNetworkInfo() != null;
+        }
+
+        TopicViewHolder(final View itemView) {
             super(itemView);
+            view = itemView;
             cv = (CardView)itemView.findViewById(R.id.topic_card);
             topicTitleText = (TextView)itemView.findViewById(R.id.topic_title_text);
             topicIsCompletedText = (TextView)itemView.findViewById(R.id.topic_is_completed_text);
 
             cv.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    Intent intent = new Intent(cv.getContext(), SectionsActivity.class);
-                    intent.putExtra("topicTitle", topicTitle);
-                    cv.getContext().startActivity(intent);
+                    if(isNetworkConnected()) {
+                        Intent intent = new Intent(cv.getContext(), SectionsActivity.class);
+                        intent.putExtra("topicTitle", topicTitle);
+                        cv.getContext().startActivity(intent);
+                    } else {
+                        Toast.makeText(itemView.getContext(), "Internet connection is required. Please turn it on to process.", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
         }
     }
+
+
 
     @Override
     public int getItemCount() {

@@ -19,6 +19,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class QuizFragment extends Fragment {
 
     Button startQuizButton;
+    TextView highscoreTextView;
     public static final String SHAREDPREF_SCORE = "SharedPrefScore";
 
 
@@ -48,7 +49,7 @@ public class QuizFragment extends Fragment {
        });
 
 
-        TextView highscoreTextView = (TextView) rootView.findViewById(R.id.highscore_text);
+        highscoreTextView = (TextView) rootView.findViewById(R.id.highscore_text);
         highscoreTextView.setText("Your Highscore: " + getHighscore());
 
      return rootView;
@@ -57,6 +58,12 @@ public class QuizFragment extends Fragment {
     public int getHighscore() {
         SharedPreferences scorePrefs = getContext().getSharedPreferences(SHAREDPREF_SCORE, MODE_PRIVATE);
         return scorePrefs.getInt("highscore", 0);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        highscoreTextView.setText("Your Highscore: " + getHighscore());
     }
 
 }

@@ -98,11 +98,12 @@ public class QuizAttackActivity extends AppCompatActivity {
     public void correctAnswerAction() {
         score++;
         // update highscore if needed
-        if (!highscoreBroken && score > highscore) {
+        if (score > highscore) {
             setHighscore(score);
-            popDialog("Wooop! Beaten your own highscore. All the way now!", null, "Okay");
-
-            highscoreBroken = true;
+            if (!highscoreBroken) {
+                popDialog("Wooop! Beaten your own highscore. All the way now!", null, "Okay");
+                highscoreBroken = true;
+            }
         }
         // set to infinity mode when when needed
         if (level != -1) {
@@ -112,7 +113,7 @@ public class QuizAttackActivity extends AppCompatActivity {
                 level = -1;
                 popDialog("WOAH! You made it to infinity mode. Gain as many scores as you can!", null, "Okay");
             }
-            getNewQuizSets(level);
+            quizSets = getNewQuizSets(level);
         }
         // prepare quiz set
         setQuestion();
