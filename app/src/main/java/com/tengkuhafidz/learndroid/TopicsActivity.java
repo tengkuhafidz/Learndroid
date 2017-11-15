@@ -44,36 +44,6 @@ public class TopicsActivity extends AppCompatActivity {
         db.open();
         ArrayList<Topic> topics = new ArrayList<Topic>();
 
-//        switch(chapterTitle) {
-//            case R.string.chapter1_title:
-//                topics.add(new Topic("User Interface", true));
-//                topics.add(new Topic("User Input", true));
-//                topics.add(new Topic("Multi-screen Apps", true));
-//                topics.add(new Topic("Networking",true));
-//                topics.add(new Topic("Data Storage", true));
-//                break;
-//            case chapter2Title:
-//                topics.add(new Topic("User Interface", true));
-//                topics.add(new Topic("User Input", true));
-//                topics.add(new Topic("Multi-screen Apps", true));
-//                topics.add(new Topic("Networking",true));
-//                topics.add(new Topic("Data Storage", true));
-//                break;
-//            case chapter3Title:
-//                topics.add(new Topic("User Interface", true));
-//                topics.add(new Topic("User Input", true));
-//                topics.add(new Topic("Multi-screen Apps", true));
-//                topics.add(new Topic("Networking",true));
-//                topics.add(new Topic("Data Storage", true));
-//                break;
-//            default:
-//                topics.add(new Topic("erje5tjet", true));
-//                topics.add(new Topic("jrjrtte", true));
-//                topics.add(new Topic("jeqtte",true));
-//                topics.add(new Topic("geqhhqhq", true));
-//                topics.add(new Topic("Daeqheta eqhqeh", true));
-//        }
-
         if (chapterTitle.equals(getString(R.string.chapter1_title))) {
             topics.add(new Topic(getString(R.string.chapter1_topic1_title),
                     db.getTopicProgress(getString(R.string.chapter1_topic1_title))));
