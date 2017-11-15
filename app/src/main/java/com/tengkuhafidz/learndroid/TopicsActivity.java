@@ -35,7 +35,7 @@ public class TopicsActivity extends AppCompatActivity {
         final ArrayList<Topic> topics = getAssociatedTopics(mChapterTitle);
 
         // specify an adapter
-        mTopicAdapter = new TopicAdapter(topics, this);
+        mTopicAdapter = new TopicAdapter(topics);
         mRecyclerView.setAdapter(mTopicAdapter);
     }
 
